@@ -1,0 +1,37 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hazelcast-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hazelcast-app
+  template:
+    metadata:
+      labels:
+        app: hazelcast-app
+    spec:
+      containers:
+      - name: springboot-app
+        image: deepaannjohn/hazelcast-sidecar-springboot:0.0.1
+        ports:
+        - containerPort: 8080
+      - name: hazelcast
+        image: hazelcast/hazelcast:5.3.0
+        ports:
+        - containerPort: 5701
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hazelcast-service
+spec:
+  clusterIP: None
+  selector:
+    app: hazelcast-app
+  ports:
+  - protocol: TCP
+    port: 5701
+    targetPort: 5701

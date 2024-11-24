@@ -1,0 +1,8 @@
+
+hazelcast:
+  client:
+    cluster-name: dev
+    network:
+      kubernetes:
+        enabled: true
+        service-name: hazelcast-service

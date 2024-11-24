@@ -1,0 +1,3 @@
+com\example\hazelcast\HazelcastSidecarApplication.class
+com\example\hazelcast\CacheController.class
+com\example\hazelcast\HazelcastConfig.class
